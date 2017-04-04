@@ -14,6 +14,8 @@ using namespace std;
 //#include <algorithm>
 #include <vector>
 #include <chrono>
+#include "mergesort.cpp"
+
 
 using namespace std::chrono;
 high_resolution_clock::time_point tantes, tdespues;
@@ -37,30 +39,45 @@ vector<int> merge(vector<int> arr1, int size1, vector<int> arr2, int size2)
         vector <int> out_array;
         out_array.resize(size1+size2);
 
-        while((i < size1) && (j < size2))
-        {
-                if(arr1[i] >= arr2[j])
-                {
-                        out_array[i+j] = arr2[j];
-                        ++j;
-                }
-                else
-                {
-                        out_array[i+j] = arr1[i];
-                        ++i;
-                }
+        //Copiamos los datos
+        for (int i=0;i<size1;i++){
+          out_array[i]=arr1[i];
         }
-        while(i < size1)
-        {
-                //copy the reminder
-                out_array[i+j] = arr1[i];
-                i++;
+
+        for (int i=size1;i<size1+size2;i++){
+          out_array[i]=arr2[i-size1];
         }
-        while( j < size2)
-        {
-                out_array[i+j] = arr2[j];
-                j++;
-        }
+
+        for (int i=0;i<out_array.size();i++)
+          cout<<out_array[i]<<" ";
+          cout<<endl;
+
+        mergesort(out_array,out_array.size());
+        //
+        // while((i < size1) && (j < size2))
+        // {
+        //         if(arr1[i] >= arr2[j])
+        //         {
+        //                 out_array[i+j] = arr2[j];
+        //                 ++j;
+        //         }
+        //         else
+        //         {
+        //                 out_array[i+j] = arr1[i];
+        //                 ++i;
+        //         }
+        // }
+        // while(i < size1)
+        // {
+        //         //copy the reminder
+        //         out_array[i+j] = arr1[i];
+        //         i++;
+        // }
+        // while( j < size2)
+        // {
+        //         out_array[i+j] = arr2[j];
+        //         j++;
+        // }
         return out_array;
 }
 
@@ -122,10 +139,10 @@ int main(int argc, char * argv[])
         transcurrido = duration_cast<duration<double> >(tdespues - tantes);
         cout <<  n << " "<< transcurrido.count() << endl;
 
-//for (int i=0;i<gigante.size();i++)
-//  cout<<gigante[i]<< " ";
+for (int i=0;i<gigante.size();i++)
+ cout<<gigante[i]<< " ";
 
 
-        //cout<<k*n<<endl;
-        //cout<<gigante.size()<<endl;
+        cout<<k*n<<endl;
+        cout<<gigante.size()<<endl;
 }
