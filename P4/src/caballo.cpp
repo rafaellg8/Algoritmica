@@ -10,22 +10,12 @@ typedef struct coordenadas {
 
 
 
-// Imprimir el recorrido
-void imprimirRecorrido(int tablero[8][8]) {
-   int i,j;
-   for (i = 0; i < 8; i++) {
-      for (j = 0; j < 8; j++) {
-          cout<<tablero[i][j]<<"\t";
-      }
-      cout<<endl;
-   }
-}
 
 /*
 @brief Funcion para calcular si es factible
 * Comprueba que esté dentro del tablero y que no haya pasado ya por esa casilla
 */
-bool esFactible(coordenadas movimiento, Tablero recorrido) {
+bool esFactible(coordenadas movimiento, Tablero & recorrido) {
    int i = movimiento.x;
    int j = movimiento.y;
    /*Si está entre la casilla 0 y 8 y no ha pasado por allí nunca*/
@@ -39,7 +29,7 @@ bool esFactible(coordenadas movimiento, Tablero recorrido) {
 @brief Encontrar el camino en el tablero
 * Funcion recursiva
 */
-bool buscarRecorrido(Tablero recorrido, coordenadas movimientos[],
+bool buscarRecorrido(Tablero & recorrido, coordenadas movimientos[],
                coordenadas posicionActual, int numMovimientos) {
    int i;
    coordenadas siguienteMov; //Siguiente movimiento

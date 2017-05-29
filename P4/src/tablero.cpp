@@ -14,10 +14,10 @@ void Tablero::reservar (){
 
 void Tablero::destructor (){
     cout<<"\nDestructor"<<endl;
-    if (tablero)
         for (int i=0; i<TAM; i++)
-                delete tablero[i];
-        delete tablero[0];
+                delete [] tablero[i];
+
+        delete []tablero;
 }
 
 
